@@ -1,12 +1,15 @@
-with open("Input/Names/invited_names.txt") as file:
-    names = [name.strip() for name in file.readlines()]
+PLACEHOLDER = "[name]"
+
+
+with open("Input/Names/invited_names.txt") as names_file:
+    names = [name.strip() for name in names_file.readlines()]
     
-with open("Input/Letters/starting_letter.txt") as file:
-    letter = file.read()
+with open("Input/Letters/starting_letter.txt") as letter_file:
+    letter_contents = letter_file.read()
     for name in names:
-        personalized_letter = letter.replace("[name]", name)
-        with open("Output/ReadyToSend/" + name + ".txt", "w") as file:
-            file.write(personalized_letter)
+        new_letter = letter_contents.replace(PLACEHOLDER, name)
+        with open(f"Output/ReadyToSend/letter_for_{name}", mode="w") as completed_letter:
+            completed_letter.write(new_letter)
 
 
 
