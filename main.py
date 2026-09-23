@@ -1,4 +1,6 @@
-
+with open("Input/Names/invited_names.txt") as file:
+    names = [name.strip() for name in file.readlines()]
+    
 
 
 
